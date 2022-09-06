@@ -1,2 +1,2 @@
-# spice-models
-Models trained on the SPICE dataset
+# SPICE-Models
+Models trained on the SPICE dataset.
