@@ -54,11 +54,14 @@ If you want to train new models on the same data, follow these steps:
 mamba env create -f environment.yml
 conda activate spice-models
 ```
-2. Run the `createSpiceDataset.py` script, which will download and convert the SPICE dataset to the format used by TorchMD-Net.  
-   It generates a new file `SPICE-processed.hdf5` to use for training.
-4. Run the `train.py` script:
+2. Run the `createSpiceDataset.py` script, which will download and convert the SPICE dataset to the format used by TorchMD-Net:
 ```bash
-python train.py --conf hparams.yaml
+python createSpiceDataset.py
+```
+   It generates a new file `SPICE-processed.hdf5` to use for training.
+4. Run the `train.py` script to create a model:
+```bash
+MODELNAME='model1'; mkdir $MODELNAME ; python train.py --conf hparams.yaml --log-dir $MODELNAME
 ```
 The file `hparams.yaml` contains the configuration used for training the models.  All models here used identical settings
 except that `seed` was set to a different value for each one (the numbers 1 through 5).  
