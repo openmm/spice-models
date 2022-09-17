@@ -62,7 +62,8 @@ python <path to torchmd-net>/scripts/train.py --conf hparams.yaml
 ```
 
 The file `hparams.yaml` contains the configuration used for training the models.  All models here used identical settings
-except that `seed` was set to a different value for each one (the numbers 1 through 5).  Note that although the file
+except that `seed` was set to a different value for each one (the numbers 1 through 5).  Be sure to use TorchMD-Net 0.2.2,
+since later versions made incompatible changes to some of the parameter definitions.  Note that although the file
 specifies `num_epochs: 1000`, training was halted after 24 hours (when the training job reached the end of its allocated
 time).  This corresponded to 118 epochs.  You can edit the file to try different hyperparameters, or override them with
 command line arguments to `train.py`.
