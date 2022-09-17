@@ -13,7 +13,6 @@ dataset_arg: null
 dataset_root: SPICE-processed.hdf5
 derivative: true
 distance_influence: both
-distributed_backend: ddp
 early_stopping_patience: 20
 ema_alpha_dy: 1.0
 ema_alpha_y: 1.0
@@ -37,7 +36,7 @@ max_z: 28
 model: equivariant-transformer
 neighbor_embedding: true
 ngpus: -1
-num_epochs: 1000
+num_epochs: 118
 num_heads: 8
 num_layers: 6
 num_nodes: 1

@@ -1,0 +1,28 @@
+name: spice-models
+channels:
+  - conda-forge
+dependencies:
+  # torchmd-net dependencies
+  - ase
+  - h5py
+  - matplotlib
+  - nnpops==0.2
+  - pip
+  - pytorch==1.11.0
+  - pytorch_cluster==1.5.9
+  - pytorch_geometric==2.0.3
+  - pytorch_scatter==2.0.8
+  - pytorch_sparse==0.6.10
+  - pytorch-lightning==1.6.3
+  - torchmetrics==0.8.2
+  - tqdm
+  # dev tools
+  - flake8
+  - pytest
+  - psutil
+  # spice data reformatting
+  - openff-toolkit<0.11.0
+  # torchmd-net
+  - pip:
+    - git+https://github.com/torchmd/torchmd-net.git@0.2.2
+

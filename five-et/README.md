@@ -1,11 +1,15 @@
 # Using the Models
 
 This directory contains the five equivariant transformer models described in (insert reference when available).
-They were created with TorchMD-Net 0.2.2.  They might work with later versions as well, but that is not guaranteed.
+They were created with [TorchMD-Net](https://github.com/openmm/spice-dataset/releases/download/1.1/SPICE.hdf5)  0.2.2.  
+They might work with later versions as well, but that is not guaranteed.
 
-To use them, first install TorchMD-Net by following the instructions at https://github.com/torchmd/torchmd-net.
-That involves checking out the source code, creating a conda environment using the provided environment file,
-and running `pip` to install it into the environment.
+To use them, first install TorchMD-Net with the provided `environment.yml`:
+
+```bash
+mamba env create -f environment.yml
+conda activate spice-models
+```
 
 The files ending in `.ckpt` are checkpoint files containing the trained models.  They can be loaded like this:
 
@@ -43,27 +47,25 @@ energy, forces = model.forward(types, pos)
 
 # Training New Models
 
-If you want to train new models on the same data, follow these steps.
+If you want to train new models on the same data, follow these steps:
 
-1. Install OpenFF-Toolkit into the conda environment by executing the command
-
+1. Create an environment containing torchmd-net 0.2.2, its dependencies, and the openff-toolkit if you haven't done so already: 
+```bash
+mamba env create -f environment.yml
+conda activate spice-models
 ```
-conda install -c conda-forge openff-toolkit=0.10.6
+2. Run the `createSpiceDataset.py` script, which will download and convert the SPICE dataset to the format used by TorchMD-Net:
+```bash
+python createSpiceDataset.py
 ```
-
-2. Download the `SPICE.hdf5` file from https://github.com/openmm/spice-dataset/releases/tag/1.1 and place it
-   in this directory.
-3. Run the `createSpiceDataset.py` script, which converts the dataset to the format used by TorchMD-Net.  It
-   generates a new file `SPICE-processed.hdf5` to use for training.
-4. Run the `train.py` script provided by TorchMD-Net.  The command will be something like
-
+   It generates a new file `SPICE-processed.hdf5` to use for training.
+4. Run the `train.py` script to create a model:
+```bash
+MODELNAME='model1'; mkdir $MODELNAME ; python train.py --conf hparams.yaml --log-dir $MODELNAME
 ```
-python <path to torchmd-net>/scripts/train.py --conf hparams.yaml
-```
-
 The file `hparams.yaml` contains the configuration used for training the models.  All models here used identical settings
-except that `seed` was set to a different value for each one (the numbers 1 through 5).  Be sure to use TorchMD-Net 0.2.2,
-since later versions made incompatible changes to some of the parameter definitions.  Note that although the file
-specifies `num_epochs: 1000`, training was halted after 24 hours (when the training job reached the end of its allocated
-time).  This corresponded to 118 epochs.  You can edit the file to try different hyperparameters, or override them with
-command line arguments to `train.py`.
+except that `seed` was set to a different value for each one (the numbers 1 through 5).  
+
+Note that this script uses TorchMD-Net 0.2.2, since later versions made incompatible changes to some of the parameter definitions. 
+
+You can edit the file to try different hyperparameters, or override them with command line arguments to `train.py`.

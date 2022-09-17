@@ -9,6 +9,13 @@ typeDict = {('Br', -1): 0, ('Br', 0): 1, ('C', -1): 2, ('C', 0): 3, ('C', 1): 4,
             ('Li', 1): 14, ('Mg', 2): 15, ('N', -1): 16, ('N', 0): 17, ('N', 1): 18, ('Na', 1): 19, ('O', -1): 20,
             ('O', 0): 21, ('O', 1): 22, ('P', 0): 23, ('P', 1): 24, ('S', -1): 25, ('S', 0): 26, ('S', 1): 27}
 
+# Download the SPICE dataset if it is not already available
+import os
+if not os.path.exists('SPICE.hdf5'):
+    print('Downloading SPICE dataset...')
+    import urllib.request
+    urllib.request.urlretrieve("https://github.com/openmm/spice-dataset/releases/download/1.1/SPICE.hdf5", "SPICE.hdf5")
+
 infile = h5py.File('SPICE.hdf5')
 
 # First pass: group the samples by total number of atoms.
