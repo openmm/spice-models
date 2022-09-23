@@ -1,6 +1,11 @@
 # Using the Models
 
-This directory contains the five equivariant transformer models described in (insert reference when available).
+This directory contains the five equivariant transformer models described in the paper
+
+Peter Eastman, Pavan Kumar Behara, David L. Dotson, Raimondas Galvelis, John E. Herr, Josh T. Horton, Yuezhi Mao,
+John D. Chodera, Benjamin P. Pritchard, Yuanqing Wang, Gianni De Fabritiis, and Thomas E. Markland.  "SPICE, A Dataset
+of Drug-like Molecules and Peptides for Training Machine Learning Potentials."  https://doi.org/10.48550/arXiv.2209.10702 (2022).
+
 They were created with TorchMD-Net 0.2.2.  They might work with later versions as well, but that is not guaranteed.
 
 To use them, first install TorchMD-Net by following the instructions at https://github.com/torchmd/torchmd-net.
